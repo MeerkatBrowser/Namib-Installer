@@ -22,7 +22,7 @@ VERSION="Namib Installation Framework 2.2"		# Installer Name / Version
 TRANS_SRC="/ninstaller"							# Dir where translation files are stored
 
 # Create a temporary file to store menu selections
-ANSWER="/tmp/.abif"
+ANSWER="/tmp/.ninstaller"
 
 # Installation
 BOOTLOADER="n/a"      								# Which bootloader has been installed?
@@ -96,32 +96,32 @@ select_language() {
 	"9" $"Magyar             (hu_HU)" 2>${ANSWER}
 
 	case $(cat ${ANSWER}) in
-        "1") source /abif-master/english.trans
+        "1") source /ninstaller/english.trans
              CURR_LOCALE="en_US.UTF-8"
              ;;
-        "2") source /abif-master/spanish.trans
+        "2") source /ninstaller/spanish.trans
              CURR_LOCALE="es_ES.UTF-8"
              ;; 
-        "3") source /abif-master/portuguese_brasil.trans
+        "3") source /ninstaller/portuguese_brasil.trans
 			 CURR_LOCALE="pt_BR.UTF-8"
 			 ;;
-        "4") source /abif-master/portuguese.trans
+        "4") source /ninstaller/portuguese.trans
 			 CURR_LOCALE="pt_PT.UTF-8"
 			 ;;		
-		"5") source /abif-master/french.trans
+		"5") source /ninstaller/french.trans
              CURR_LOCALE="fr_FR.UTF-8"
              ;;	 
-        "6") source /abif-master/russian.trans
+        "6") source /ninstaller/russian.trans
              CURR_LOCALE="ru_RU.UTF-8"
              FONT="LatKaCyrHeb-14.psfu"
              ;;
-        "7") source /abif-master/italian.trans
+        "7") source /ninstaller/italian.trans
              CURR_LOCALE="it_IT.UTF-8"
              ;;
-        "8") source /abif-master/dutch.trans
+        "8") source /ninstaller/dutch.trans
              CURR_LOCALE="nl_NL.UTF-8"
              ;;
-        "9") source /abif-master/hungarian.trans
+        "9") source /ninstaller/hungarian.trans
              CURR_LOCALE="hu_HU.UTF-8"
              FONT="lat2-16.psfu"
              ;;
@@ -1420,7 +1420,7 @@ install_root(){
   cp /etc/pacman.d/mirrorlist ${MOUNTPOINT}/etc/pacman.d/mirrorlist 2>>/tmp/.errlog
   
   # Clean up installation
-  [[ -d ${MOUNTPOINT}/abif-master ]] && rm -R ${MOUNTPOINT}/abif-master 2>>/tmp/.errlog
+  [[ -d ${MOUNTPOINT}/ninstaller ]] && rm -R ${MOUNTPOINT}/ninstaller 2>>/tmp/.errlog
   rm -rf ${MOUNTPOINT}/vomi 2>>/tmp/.errlog
   rm -f ${MOUNTPOINT}/home/$ISO_USER/Desktop/ninstaller.desktop 2>>/tmp/.errlog
   rm -rf ${BYPASS} 2>>/tmp/.errlog
@@ -1431,7 +1431,7 @@ install_root(){
   rmdir ${MOUNTPOINT}/source 2>>/tmp/.errlog
   rm -f ${MOUNTPOINT}/etc/sudoers.d/g_wheel 2>>/tmp/.errlog
   rm -f ${MOUNTPOINT}/var/lib/NetworkManager/NetworkManager.state 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/update-abif 2>>/tmp/.errlog
+  rm -f ${MOUNTPOINT}/update-ninstaller 2>>/tmp/.errlog
   sed -i 's/.*pam_wheel\.so/#&/' ${MOUNTPOINT}/etc/pam.d/su 2>>/tmp/.errlog
  
   # clean out archiso files from install
